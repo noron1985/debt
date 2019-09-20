@@ -8,14 +8,14 @@ public class User {
     private String name;
     private String mail;
     private String password;
-    private List<Debt> debts;
+    private List<Balance> balances;
 
-    public User(int id, String name, String mail, String password, List<Debt> debts) {
+    public User(int id, String name, String mail, String password, List<Balance> balances) {
         this.id = id;
         this.name = name;
         this.mail = mail;
         this.password = password;
-        this.debts = debts;
+        this.balances = balances;
     }
 
     public int getId() {
@@ -50,12 +50,12 @@ public class User {
         this.password = password;
     }
 
-    public List<Debt> getDebts() {
-        return debts;
+    public List<Balance> getBalances() {
+        return balances;
     }
 
-    public void setDebts(List<Debt> debts) {
-        this.debts = debts;
+    public void setBalances(List<Balance> balances) {
+        this.balances = balances;
     }
 
 

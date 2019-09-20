@@ -12,7 +12,9 @@ public interface UserDao {
 
     User findByName(String name);
 
-    User delete(int id);
+    User save(User user);
+
+//    User delete(int id);
 
 
 

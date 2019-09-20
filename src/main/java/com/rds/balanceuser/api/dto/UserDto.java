@@ -1,27 +1,27 @@
 package com.rds.balanceuser.api.dto;
 
-import com.rds.balanceuser.model.Debt;
+import com.rds.balanceuser.model.Balance;
 
 import java.util.List;
 
 public class UserDto {
 
     private String name;
-    private List<Debt> debts;
+    private List<Balance> balances;
 
     protected UserDto(){
     }
 
-    public UserDto(String name, List<Debt> debts) {
+    public UserDto(String name, List<Balance> balances) {
         this.name = name;
-        this.debts = debts;
+        this.balances = balances;
     }
 
     public String getName() {
         return name;
     }
 
-    public List<Debt> getDebts() {
-        return debts;
+    public List<Balance> getBalances() {
+        return balances;
     }
 }
