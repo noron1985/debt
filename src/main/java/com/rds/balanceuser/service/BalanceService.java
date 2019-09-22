@@ -1,5 +1,6 @@
 package com.rds.balanceuser.service;
 
+import com.rds.balanceuser.api.dto.BalanceDto;
 import com.rds.balanceuser.api.dto.BalanceDtoCreditor;
 import com.rds.balanceuser.api.dto.BalanceDtoDebitor;
 import com.rds.balanceuser.dao.BalanceDao;
@@ -12,12 +13,13 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
-public class BalanceService {
+public class BalanceService implements Function<Balance, BalanceDto> {
 
     private final Function<Balance, BalanceDtoDebitor> DtoDebitorConverter = this::DtoDebitorConverter;
     private final Function<Balance, BalanceDtoCreditor> DtoCreditorConverter = this::DtoCreditorConverter;
+
     @Autowired
-    private BalanceDao balanceDao;
+    public BalanceDao balanceDao;
 
     public BalanceDtoCreditor DtoCreditorConverter(Balance balance) {
         return new BalanceDtoCreditor(balance.getIdto(), balance.getAmount());
@@ -27,12 +29,20 @@ public class BalanceService {
         return new BalanceDtoDebitor(balance.getIdfrom(), balance.getAmount());
     }
 
-    public List<BalanceDtoCreditor> findAllCreditor() {
-        return balanceDao.findAll().stream().map(DtoCreditorConverter).collect(Collectors.toList());
+    public List<BalanceDtoCreditor> findAllCreditor(int id) {
+        return balanceDao.findCreditor(id).stream().map(DtoCreditorConverter).collect(Collectors.toList());
     }
 
     public List<BalanceDtoDebitor> findAllDebitor() {
-        return balanceDao.findAll().stream().map(DtoDebitorConverter).collect(Collectors.toList());
+        return balanceDao.findDebitor(false).stream().map(DtoDebitorConverter).collect(Collectors.toList());
     }
 
+    public List<BalanceDto> findAllBalance() {
+        return balanceDao.findAll().stream().map(this::apply).collect(Collectors.toList());
+    }
+
+    @Override
+    public BalanceDto apply(Balance balance) {
+        return new BalanceDto(balance.getIdfrom(), balance.getIdto(), balance.getAmount());
+    }
 }

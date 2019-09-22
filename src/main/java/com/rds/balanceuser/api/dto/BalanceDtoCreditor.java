@@ -6,6 +6,10 @@ public class BalanceDtoCreditor {
     private int idTo;
     private double amount;
 
+    protected BalanceDtoCreditor() {
+
+    }
+
     public BalanceDtoCreditor(int idTo, double amount) {
         this.idTo = idTo;
         this.amount = amount;
