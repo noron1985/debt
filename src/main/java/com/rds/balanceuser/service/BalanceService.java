@@ -35,4 +35,8 @@ public class BalanceService {
         return balanceDao.findAll().stream().map(DtoDebitorConverter).collect(Collectors.toList());
     }
 
+    public List<Balance> findAll() {
+        return balanceDao.findAll();
+    }
+
 }
