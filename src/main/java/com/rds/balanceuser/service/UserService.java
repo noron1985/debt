@@ -33,7 +33,6 @@ public class UserService implements Function<User, UserDto> {
         return apply(userDao.save(user));
     }
 
-
     @Override
     public UserDto apply(User user) {
         return new UserDto(user.getName(), user.getBalances());

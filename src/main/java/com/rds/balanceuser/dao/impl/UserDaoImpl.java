@@ -1,10 +1,10 @@
 package com.rds.balanceuser.dao.impl;
 
 import com.rds.balanceuser.dao.UserDao;
-import com.rds.balanceuser.model.Balance;
 import com.rds.balanceuser.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
@@ -15,7 +15,11 @@ import java.util.List;
 public class UserDaoImpl implements UserDao {
 
     Logger logger = LoggerFactory.getLogger(UserDaoImpl.class);
-    private List<Balance> balances = new ArrayList<>();
+//    private List<Balance> balances = new ArrayList<>();
+
+    @Autowired
+    private BalanceDaoImpl balanceDao;
+
     private List<User> users = new ArrayList<>();
 
     @Override
@@ -33,6 +37,7 @@ public class UserDaoImpl implements UserDao {
         int userIndex = users.indexOf(user);
         if (userIndex == -1) {
             users.add(user);
+            user.getBalances().forEach(balance -> balanceDao.save(balance));
             logger.debug("User" + user.getId() + " created to list");
             return users.get(users.size() - 1);
         } else {
@@ -49,15 +54,7 @@ public class UserDaoImpl implements UserDao {
 
     @PostConstruct
     public void onPostConstruct() {
-        balances.add(new Balance(1, 2, 50, true));
-        balances.add(new Balance(1, 3, 120, true));
-        balances.add(new Balance(1, 4, 10, true));
-
-        users.add(new User(1, "Ronald", "r@gmail.com", "lsfksldfks", balances));
-/*        users.add(new User(2,"Tony", "t@gmail.com","slskfsksld", balances));
-        users.add(new User(3,"Donovan","d@gmail.com", "slfmslmaz", balances));
-        users.add(new User(4,"Cyril", "c@gmail.com", "sflsdmlmlf", balances));*/
-
+        users.add(new User(1, "Ronald", "r@gmail.com", "lsfksldfks", balanceDao.findAll()));
     }
 
 //    @Override
@@ -68,4 +65,5 @@ public class UserDaoImpl implements UserDao {
 //        }
 //        return findById(userToDelete.getId());
 //    }
+
 }

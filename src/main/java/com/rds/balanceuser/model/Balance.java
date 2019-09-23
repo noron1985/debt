@@ -56,7 +56,12 @@ public class Balance {
     }
 
     @Override
-    public int hashCode() {
-        return 0;
+    public String toString() {
+        return "Balance{" +
+                "Idfrom=" + Idfrom +
+                ", Idto=" + Idto +
+                ", amount=" + amount +
+                ", isCreditor=" + isCreditor +
+                '}';
     }
 }

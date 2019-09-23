@@ -19,24 +19,36 @@ public class BalanceDaoImpl implements BalanceDao {
 
     //je cherche tout ceux qui me doivent de l'argent
     @Override
-    public List<Balance> findDebtor(int idFrom) {
+    public List<Balance> findDebitor(boolean isCreditor) {
         return balances.stream()
-                .filter(balance -> balance.getIdfrom() == idFrom)
+                .filter(balance -> !balance.isCreditor())
                 .collect(toList());
     }
 
     //je cherche tout ceux à qui je dois de l'argent
-
     @Override
     public List<Balance> findCreditor(int idTo) {
         return balances.stream()
-                .filter(balance -> balance.getIdto() == idTo)
+                .filter(balance -> balance.getIdto() == idTo && balance.isCreditor())
                 .collect(toList());
     }
 
     @Override
     public List<Balance> findAll() {
         return balances;
+    }
+
+    @Override
+    public Balance save(Balance balance) {
+        balances.add(balance);
+        return balance;
+    }
+
+    @PostConstruct
+    public void onPostConstruct() {
+        balances.add(new Balance(1, 2, 50, true));
+        balances.add(new Balance(1, 3, 120, true));
+        balances.add(new Balance(1, 4, 10, true));
     }
 
 }
