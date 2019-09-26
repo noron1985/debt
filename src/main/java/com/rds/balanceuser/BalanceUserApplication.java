@@ -8,7 +8,7 @@ public class BalanceUserApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(BalanceUserApplication.class, args);
-		System.out.println("Hello world");
+        System.out.println("API running");
 	}
 
 }

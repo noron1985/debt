@@ -10,8 +10,12 @@ public interface BalanceDao {
 
     List<Balance> findCreditor(int idTo);
 
+    List<Balance> findAllCreditor();
+
     List<Balance> findDebitor(boolean isCreditor);
 
-    public Balance save(Balance balance);
+    Balance add(Balance balance, String name);
+
+    Balance add(Balance balance);
 
 }

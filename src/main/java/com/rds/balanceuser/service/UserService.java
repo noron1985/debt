@@ -29,6 +29,10 @@ public class UserService implements Function<User, UserDto> {
         return userDao.findAll().stream().map(this::apply).collect(Collectors.toList());
     }
 
+    public UserDto findByName(String name) {
+        return apply(userDao.findByName(name));
+    }
+
     public UserDto save(User user) {
         return apply(userDao.save(user));
     }

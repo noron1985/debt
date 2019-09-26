@@ -18,7 +18,7 @@ public class UserController  {
     private UserService userService;
 
 
-    @GetMapping("/api/users")
+    @GetMapping("/api/user")
     public List<UserDto> findAll(){
         return userService.findAll();
     }
@@ -26,6 +26,11 @@ public class UserController  {
     @GetMapping("/api/user/{id}")
     public UserDto findById(@PathVariable int id){
         return userService.findById(id);
+    }
+
+    @GetMapping("/api/user/byname/{name}")
+    public UserDto findByName(@PathVariable String name) {
+        return userService.findByName(name);
     }
 
     @PostMapping("/api/user")

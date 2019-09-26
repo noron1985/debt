@@ -33,12 +33,24 @@ public class BalanceService implements Function<Balance, BalanceDto> {
         return balanceDao.findCreditor(id).stream().map(DtoCreditorConverter).collect(Collectors.toList());
     }
 
+    public List<BalanceDtoCreditor> findAllCreditor() {
+        return balanceDao.findAllCreditor().stream().map(DtoCreditorConverter).collect(Collectors.toList());
+    }
+
     public List<BalanceDtoDebitor> findAllDebitor() {
         return balanceDao.findDebitor(false).stream().map(DtoDebitorConverter).collect(Collectors.toList());
     }
 
     public List<BalanceDto> findAllBalance() {
         return balanceDao.findAll().stream().map(this::apply).collect(Collectors.toList());
+    }
+
+    public Balance addBalance(Balance balance) {
+        return balanceDao.add(balance);
+    }
+
+    public Balance addBalanceToUser(Balance balance, String name) {
+        return balanceDao.add(balance, name);
     }
 
     @Override

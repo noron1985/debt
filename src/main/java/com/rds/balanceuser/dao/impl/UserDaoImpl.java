@@ -36,8 +36,14 @@ public class UserDaoImpl implements UserDao {
     public User save(User user) {
         int userIndex = users.indexOf(user);
         if (userIndex == -1) {
-            users.add(user);
-            user.getBalances().forEach(balance -> balanceDao.save(balance));
+            users.add(new User(
+                    user.getId(),
+                    user.getName().toLowerCase(),
+                    user.getMail(),
+                    user.getPassword(),
+                    user.getBalances())
+            );
+//            user.getBalances().forEach(balance -> balanceDao.add(balance));
             logger.debug("User" + user.getId() + " created to list");
             return users.get(users.size() - 1);
         } else {
@@ -54,7 +60,7 @@ public class UserDaoImpl implements UserDao {
 
     @PostConstruct
     public void onPostConstruct() {
-        users.add(new User(1, "Ronald", "r@gmail.com", "lsfksldfks", balanceDao.findAll()));
+        users.add(new User(1, "ronald", "r@gmail.com", "lsfksldfks", balanceDao.findAll()));
     }
 
 //    @Override
