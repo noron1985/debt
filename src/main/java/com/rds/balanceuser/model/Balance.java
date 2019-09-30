@@ -18,22 +18,14 @@ public class Balance {
         return Idfrom;
     }
 
-    public void setIdfrom(int idfrom) {
-        Idfrom = idfrom;
-    }
 
     public int getIdto() {
         return Idto;
     }
 
-    public void setIdto(int idto) {
-        Idto = idto;
-    }
-
     public double getAmount() {
         return amount;
     }
-
 
     public void setAmount(double amount) {
         this.amount = amount;

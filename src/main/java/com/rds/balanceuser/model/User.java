@@ -22,10 +22,6 @@ public class User {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }
@@ -58,5 +54,14 @@ public class User {
         this.balances = balances;
     }
 
-
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", mail='" + mail + '\'' +
+                ", password='" + password + '\'' +
+                ", balances=" + balances +
+                '}';
+    }
 }

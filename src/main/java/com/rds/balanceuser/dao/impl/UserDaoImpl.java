@@ -60,7 +60,13 @@ public class UserDaoImpl implements UserDao {
 
     @PostConstruct
     public void onPostConstruct() {
-        users.add(new User(1, "ronald", "r@gmail.com", "lsfksldfks", balanceDao.findAll()));
+        users.add(new User(
+                1,
+                "ronald",
+                "r@gmail.com",
+                "lsfksldfks",
+                balanceDao.findAll())
+        );
     }
 
 //    @Override

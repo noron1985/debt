@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +21,8 @@ import static java.util.stream.Collectors.toList;
 public class BalanceDaoImpl implements BalanceDao {
 
     private List<Balance> balances = new ArrayList<>();
+
+    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-DD");
 
     @Autowired
     private UserService userService;
@@ -58,7 +61,8 @@ public class BalanceDaoImpl implements BalanceDao {
                 balance.getIdfrom(),
                 balance.getIdto(),
                 balance.getAmount(),
-                balance.isCreditor());
+                balance.isCreditor()
+        );
 
         if (balance.isCreditor()) {
             // user became creditor
@@ -99,6 +103,7 @@ public class BalanceDaoImpl implements BalanceDao {
     @PostConstruct
     public void onPostConstruct() {
         balances.add(new Balance(1, 2, 50, true));
+        balances.add(new Balance(1, 2, 1.99, false));
         balances.add(new Balance(1, 3, 120, true));
         balances.add(new Balance(1, 4, 10, true));
     }
