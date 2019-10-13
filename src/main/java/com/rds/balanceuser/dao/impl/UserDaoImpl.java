@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,16 +57,10 @@ public class UserDaoImpl implements UserDao {
         return users;
     }
 
-    @PostConstruct
-    public void onPostConstruct() {
-        users.add(new User(
-                1,
-                "ronald",
-                "r@gmail.com",
-                "lsfksldfks",
-                balanceDao.findAll())
-        );
-    }
+//    @PostConstruct
+//    public void onPostConstruct() {
+//        users.add(new User(1, "ronald", "r@gmail.com", "lsfksldfks", balanceDao.findAll()));
+//    }
 
 //    @Override
 //    public User delete(int id) {

@@ -1,15 +1,15 @@
 package com.rds.balanceuser.api.dto;
 
 // ceux qui me doivent de l'argent
-public class BalanceDtoDebitor {
+public class BalanceDtoDebtor {
 
     private int idFrom;
     private double amount;
 
-    protected BalanceDtoDebitor() {
+    protected BalanceDtoDebtor() {
     }
 
-    public BalanceDtoDebitor(int idFrom, double amount) {
+    public BalanceDtoDebtor(int idFrom, double amount) {
         this.idFrom = idFrom;
         this.amount = amount;
     }

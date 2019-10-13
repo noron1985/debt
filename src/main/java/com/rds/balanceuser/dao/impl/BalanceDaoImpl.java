@@ -7,7 +7,6 @@ import com.rds.balanceuser.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import javax.annotation.PostConstruct;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -100,11 +99,21 @@ public class BalanceDaoImpl implements BalanceDao {
         return balance;
     }
 
-    @PostConstruct
-    public void onPostConstruct() {
-        balances.add(new Balance(1, 2, 50, true));
-        balances.add(new Balance(1, 2, 1.99, false));
-        balances.add(new Balance(1, 3, 120, true));
-        balances.add(new Balance(1, 4, 10, true));
+    @Override
+    public List<Balance> findCreditors() {
+        return null;
     }
+
+    @Override
+    public List<Balance> findDebitors() {
+        return null;
+    }
+
+//    @PostConstruct
+//    public void onPostConstruct() {
+//        balances.add(new Balance(1, 2, 50, true));
+//        balances.add(new Balance(1, 2, 1.99, false));
+//        balances.add(new Balance(1, 3, 120, true));
+//        balances.add(new Balance(1, 4, 10, true));
+//    }
 }

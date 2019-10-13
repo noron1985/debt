@@ -8,8 +8,8 @@ public class Balance {
     private boolean isCreditor;
 
     public Balance(int idfrom, int idto, double amount, boolean isCreditor) {
-        Idfrom = idfrom;
-        Idto = idto;
+        this.Idfrom = idfrom;
+        this.Idto = idto;
         this.amount = amount;
         this.isCreditor = isCreditor;
     }

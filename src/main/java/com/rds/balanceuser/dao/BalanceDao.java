@@ -18,4 +18,10 @@ public interface BalanceDao {
 
     Balance add(Balance balance);
 
+    List<Balance> findCreditors();
+
+    List<Balance> findDebitors();
+
+
+
 }
