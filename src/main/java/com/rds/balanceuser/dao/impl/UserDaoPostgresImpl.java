@@ -42,7 +42,7 @@ public class UserDaoPostgresImpl implements UserDao, RowMapper<User> {
 
     @Override
     public List<User> findAll() {
-        return null;
+        return jdbcTemplate.query("SELECT * FROM public.user", this::mapRow);
     }
 
     @Override

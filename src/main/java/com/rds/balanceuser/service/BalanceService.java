@@ -42,6 +42,10 @@ public class BalanceService implements Function<Balance, BalanceDto> {
         return balanceDao.add(balance, name);
     }
 
+    public Balance addBalanceToUserById(Balance balance, int id) {
+        return balanceDao.add(balance, id);
+    }
+
     // TO DELETE after DB fully integrated
     public List<BalanceDtoCreditor> findAllCreditor(int id) {
         return balanceDao.findCreditor(id).stream().map(DtoCreditorConverter).collect(toList());

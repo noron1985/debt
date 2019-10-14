@@ -94,6 +94,11 @@ public class BalanceDaoImpl implements BalanceDao {
     }
 
     @Override
+    public Balance add(Balance balance, int id) {
+        return null;
+    }
+
+    @Override
     public Balance add(Balance balance) {
         balances.add(balance);
         return balance;

@@ -16,6 +16,8 @@ public interface BalanceDao {
 
     Balance add(Balance balance, String name);
 
+    Balance add(Balance balance, int id);
+
     Balance add(Balance balance);
 
     List<Balance> findCreditors();

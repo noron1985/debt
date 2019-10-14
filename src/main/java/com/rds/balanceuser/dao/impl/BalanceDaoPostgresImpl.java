@@ -18,6 +18,8 @@ public class BalanceDaoPostgresImpl implements BalanceDao, RowMapper<Balance> {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
+//    @Autowired
+//    private UserService userService;
 
     @Override
     public List<Balance> findAll() {
@@ -41,6 +43,43 @@ public class BalanceDaoPostgresImpl implements BalanceDao, RowMapper<Balance> {
     @Override
     public Balance add(Balance balance, String name) {
         return null;
+    }
+
+    @Override
+    public Balance add(Balance balance, int id) {
+
+        Balance temp = new Balance(
+                balance.getIdfrom(),
+                balance.getIdto(),
+                balance.getAmount(),
+                balance.isCreditor());
+        if (balance.isCreditor()) {
+            jdbcTemplate.update("INSERT INTO public.balance VALUES (?, ?, ?, ?) ",
+                    temp.getIdfrom(),
+                    temp.getIdto(),
+                    temp.getAmount(),
+                    temp.isCreditor());
+            temp.setCreditor(false);
+            jdbcTemplate.update("INSERT INTO public.balance VALUES (?, ?, ?, ?)",
+                    temp.getIdto(),
+                    temp.getIdfrom(),
+                    temp.getAmount(),
+                    temp.isCreditor());
+
+        } else {
+            jdbcTemplate.update("INSERT INTO public.balance VALUES (?, ?, ?, ?)",
+                    temp.getIdfrom(),
+                    temp.getIdto(),
+                    temp.getAmount(),
+                    temp.isCreditor());
+            temp.setCreditor(true);
+            jdbcTemplate.update("INSERT INTO public.balance VALUES (?, ?, ?, ?)",
+                    temp.getIdto(),
+                    temp.getIdfrom(),
+                    temp.getAmount(),
+                    temp.isCreditor());
+        }
+        return balance;
     }
 
     @Override
